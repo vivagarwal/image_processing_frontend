@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route , Navigate} from "react-router-dom";
 import './index.css';
 import HelloPage from "./pages/HelloPage";
 import FileUploadPage from "./pages/FileUploadPage";
+import StatusPage from "./pages/StatusPage";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
         <Routes>
         <Route path="/" element={<HelloPage />} />
         <Route path="/upload" element={<FileUploadPage />} />
+        <Route path="/status" element={<StatusPage />} />
         </Routes>
     </div>
   );
