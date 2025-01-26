@@ -14,7 +14,7 @@ const StatusPage = () => {
     setError('');
 
     if (!requestId.trim()) {
-      setError("Please enter a valid Request ID.");
+      setError("⚠️ Please enter a valid Request ID.");
       return;
     }
 
@@ -30,44 +30,47 @@ const StatusPage = () => {
         setHtmlContent(response.data);
       }
     } catch (error) {
-      setError('Error fetching status. Please try again.');
+      setError('❌ Error fetching status. Please try again.');
     }
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 bg-white p-6 rounded shadow-md">
-      <h1 className="text-2xl font-bold mb-4 text-center">Check Request Id Status</h1>
-      
-      <input 
-        type="text" 
-        placeholder="Enter Request ID" 
-        value={requestId} 
-        onChange={(e) => setRequestId(e.target.value)}
-        className="border p-2 w-full mb-4 rounded"
-      />
-      
-      <button 
-        onClick={fetchStatus} 
-        className="bg-blue-500 text-white px-6 py-2 rounded w-full hover:bg-blue-700"
-      >
-        Check Status
-      </button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 p-6">
+      <div className="bg-white shadow-lg rounded-xl p-8 max-w-xl w-full text-center">
+        <h1 className="text-4xl font-extrabold text-gray-800 mb-6">Check Request Status</h1>
+        <p className="text-gray-600 mb-6">Enter your Request ID to check the processing status</p>
 
-      {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
+        <input 
+          type="text" 
+          placeholder="Enter Request ID" 
+          value={requestId} 
+          onChange={(e) => setRequestId(e.target.value)}
+          className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:ring-4 focus:ring-indigo-400 focus:border-indigo-500 text-lg"
+        />
 
-      {status && (
-        <div className="mt-4 bg-gray-100 p-4 rounded">
-          <h2 className="font-bold text-lg">Processing Status:</h2>
-          <p className="text-gray-800">{status}</p>
-        </div>
-      )}
+        <button 
+          onClick={fetchStatus} 
+          className="w-full mt-4 py-3 text-lg font-bold rounded-lg text-white transition-all shadow-md bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-700 transform hover:scale-105"
+        >
+          Check Status
+        </button>
 
-      {htmlContent && (
-        <div 
-          className="mt-4 border p-4 rounded bg-gray-100"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        ></div>
-      )}
+        {error && <p className="mt-6 text-red-500 text-lg font-medium">{error}</p>}
+
+        {status && (
+          <div className="mt-6 p-4 bg-green-100 text-green-700 rounded-lg shadow-inner border border-green-300">
+            <h2 className="text-2xl font-bold mb-2">Processing Status:</h2>
+            <p className="text-lg">{status}</p>
+          </div>
+        )}
+
+        {htmlContent && (
+          <div 
+            className="mt-6 p-4 bg-gray-100 rounded-lg shadow-inner border border-gray-300 text-left max-h-60 overflow-auto"
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          ></div>
+        )}
+      </div>
     </div>
   );
 };
