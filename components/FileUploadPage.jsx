@@ -23,10 +23,13 @@ const FileUploadPage = () => {
     const formData = new FormData();
     formData.append('file', file);
 
+    const webhookUrl =`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/webhook-receive`;
+    formData.append('webhook_url', webhookUrl);
+
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/imgproc/upload`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/imgproc/upload`,
         formData,
         {
           headers: {

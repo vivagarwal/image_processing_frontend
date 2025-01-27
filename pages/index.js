@@ -1,10 +1,7 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './index.css';
-import FileUploadPage from "./pages/FileUploadPage";
-import StatusPage from "./pages/StatusPage";
+import FileUploadPage from "../components/FileUploadPage";
+import StatusPage from "../components/StatusPage";
 
-const App = () => {
+export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-gray-100 via-blue-200 to-purple-300 p-8">
       <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-8">
@@ -25,14 +22,4 @@ const App = () => {
       </div>
     </div>
   );
-};
-
-const AppWrapper = () => {
-  return (
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  );
-};
-
-export default AppWrapper;
+}

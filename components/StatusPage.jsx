@@ -6,7 +6,7 @@ const StatusPage = () => {
   const [status, setStatus] = useState('');
   const [htmlContent, setHtmlContent] = useState('');
   const [error, setError] = useState('');
-  const baseUrl = import.meta.env.VITE_BASE_URL; // Access base URL from environment variable
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL; // Access base URL from environment variable
 
   const fetchStatus = async () => {
     setStatus('');
