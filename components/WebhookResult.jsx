@@ -25,25 +25,49 @@ const WebhookResult = () => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 mt-6">
-      <h2 className="text-2xl font-bold mb-4 text-purple-600">Webhook Results</h2>
+    <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 overflow-hidden">
+      <h2 className="text-3xl font-bold mb-6 text-purple-600 text-center">
+        Webhook Results
+      </h2>
       {Object.keys(requests).length === 0 ? (
-        <p className="text-gray-500">No results available yet.</p>
+        <p className="text-gray-500 text-center">No results available yet.</p>
       ) : (
-        <ul>
-          {Object.entries(requests).map(([key, value]) => (
-            <li key={key} className="border-b border-gray-300 py-2">
-              <strong className="text-blue-700">Request ID:</strong> {key} <br />
-              <strong className="text-green-600">Status:</strong> {value.status} <br />
-              {value.status === 'completed' && (
-                <div
-                  className="bg-gray-100 p-4 mt-2 rounded-md shadow-md"
-                  dangerouslySetInnerHTML={{ __html: value.data }}
-                />
-              )}
-            </li>
-          ))}
-        </ul>
+        <div className="overflow-x-auto">
+          <table className="min-w-full border border-gray-300">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="border border-gray-300 px-6 py-3 text-left text-lg font-semibold text-gray-700">
+                  Request ID
+                </th>
+                <th className="border border-gray-300 px-6 py-3 text-left text-lg font-semibold text-gray-700">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-700 text-sm">
+              {Object.entries(requests).map(([key, value]) => (
+                <tr key={key} className="border-b border-gray-300">
+                  <td className="border border-gray-300 px-6 py-3 break-words max-w-xs truncate">
+                    <span className="text-blue-700 font-medium">{key}</span>
+                  </td>
+                  <td className="border border-gray-300 px-6 py-3 text-green-600 font-medium">
+                    {value.status}
+                  </td>
+                  <td className="border border-gray-300 px-6 py-3">
+                    {value.status === 'completed' ? (
+                      <div
+                        className="bg-gray-100 p-4 rounded-md shadow-md overflow-auto max-h-40"
+                        dangerouslySetInnerHTML={{ __html: value.data }}
+                      />
+                    ) : (
+                      <span className="text-red-500">Processing failed</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );
