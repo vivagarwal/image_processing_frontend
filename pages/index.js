@@ -1,5 +1,6 @@
 import FileUploadPage from "../components/FileUploadPage";
 import StatusPage from "../components/StatusPage";
+import WebhookResult from "../components/WebhookResult";
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
           <StatusPage />
         </div>
       </div>
+
+      {/* Webhook Results Section */}
+      <WebhookResult />
     </div>
   );
 }

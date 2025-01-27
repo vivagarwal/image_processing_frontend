@@ -23,7 +23,7 @@ const FileUploadPage = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    const webhookUrl =`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/webhook-receive`;
+    const webhookUrl =`${window.location.origin}/api/webhook`;
     formData.append('webhook_url', webhookUrl);
 
     setIsLoading(true);
